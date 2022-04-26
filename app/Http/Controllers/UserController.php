@@ -6,6 +6,7 @@ use App\Http\Requests\deleteUser;
 use App\Http\Requests\displayUser;
 use App\Http\Requests\loginUser;
 use App\Http\Requests\updateUser;
+use App\Models\Livreur;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -16,16 +17,23 @@ class UserController extends Controller
 
         $validated = $request->validated();
 
-        $user = User::where('email', [$request['email']])->first();
+        $user = User::where('email', [$request['login']])->first();
+        $livreur = Livreur::where('phone', [$request['login']])->first();
 
-        if (!$user || ! Hash::check($request['password'], $user->password)){
-            return  ['message' => 'Fail'];
-        }else{
+        if($livreur && Hash::check($request['password'], $livreur->password)){
+            return  [
+                'message' => 'Success',
+                'id' => $livreur->id,
+                'type' => 'Livreur'
+            ];
+        }else if($user && Hash::check($request['password'], $user->password)){
             return  [
                 'message' => 'Success',
                 'id' => $user->id,
                 'type' => $user->type
             ];
+        }else{
+            return ['fail'];
         }
     }
 
@@ -97,7 +105,6 @@ class UserController extends Controller
 
         if($request->password == ""){
             $request->password = $user->password;
-            $request->password = $user->password;
         }else{
             $request->password = Hash::make($request->password);
         }
@@ -106,7 +113,7 @@ class UserController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'phone' => $request->phone,
-            'type' => $request->type,
+            'pourcentageCaspro' => $request->pourcentageCaspro,
             'password' => $request->password,
             'RC' => $request->RC,
             'NIF' => $request->NIF,
@@ -125,6 +132,7 @@ class UserController extends Controller
             'password' => Hash::make($request->password),
             'type' => $request->type,
             'phone' => $request->phone,
+            'pourcentageCaspro' => $request->pourcentageCaspro,
             'RC' => $request->RC,
             'NIF' => $request->NIF,
             'NIS' => $request->NIS,

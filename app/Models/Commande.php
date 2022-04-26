@@ -9,7 +9,7 @@ class Commande extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['numCommande', 'status', 'user_id', 'pdv_id'];
+    protected $fillable = ['numCommande', 'status', 'prixTotal', 'user_id', 'pdv_id'];
 
     public function User()
     {
@@ -22,6 +22,8 @@ class Commande extends Model
     public function Product()
     {
         return $this->belongsToMany(Product::class)
-            ->withPivot('quantity');
+            ->withPivot('quantity')
+            ->withPivot('price')
+            ->withPivot('status');
     }
 }

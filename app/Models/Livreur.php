@@ -9,7 +9,7 @@ class Livreur extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'phone', 'user_id'];
+    protected $fillable = ['name', 'phone', 'password', 'user_id'];
 
     public function User()
     {

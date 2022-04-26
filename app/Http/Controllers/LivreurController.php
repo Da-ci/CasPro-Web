@@ -10,6 +10,7 @@ use App\Models\Livreur;
 use App\Models\Stock;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class LivreurController extends Controller
 {
@@ -27,6 +28,7 @@ class LivreurController extends Controller
         $livreur = livreur::create([
             'name' => $request->name,
             'phone' => $request->phone,
+            'password' => Hash::make($request->password),
             'user_id' => $request->user_id
         ]);
     }

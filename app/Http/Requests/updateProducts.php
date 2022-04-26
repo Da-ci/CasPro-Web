@@ -15,7 +15,7 @@ class updateProducts extends FormRequest
             'price' => 'required',
             'quantity' => 'required',
             'seuil' => 'required',
-            'priceGros' => 'required'
+            'prixGros' => 'required'
         ];
     }
 }

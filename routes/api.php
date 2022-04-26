@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\ArgentController;
 use App\Http\Controllers\commandeController;
 use App\Http\Controllers\LivreurController;
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PdvController;
 use App\Http\Controllers\StockController;
 use Illuminate\Http\Request;
@@ -68,16 +70,58 @@ Route::post('updateLivreur', [LivreurController::class,'updateLivreur']);
 //Commandes routes
 
 Route::get('displayCommandes', [commandeController::class,'displayCommandes']);
+Route::post('displayCommandesCommercial', [commandeController::class,'displayCommandesCommercial']);
+Route::get('displayCommandesEnAttente', [commandeController::class,'displayCommandesEnAttente']);
+Route::post('displayCommandesEnAttenteMarques', [commandeController::class,'displayCommandesEnAttenteMarques']);
+Route::get('displayEarningsDaily', [commandeController::class,'displayEarningsDaily']);
+Route::post('displayEarningsDailyMarques', [commandeController::class,'displayEarningsDailyMarques']);
+Route::get('displayEarningsMonthly', [commandeController::class,'displayEarningsMonthly']);
+Route::post('displayEarningsMonthlyMarques', [commandeController::class,'displayEarningsMonthlyMarques']);
+Route::get('displayPercentageTasks', [commandeController::class,'displayPercentageTasks']);
+Route::post('displayNumberProductsMarques', [commandeController::class,'displayNumberProductsMarques']);
+Route::get('overviewEarnings', [commandeController::class,'overviewEarnings']);
+Route::post('overviewEarningsMarques', [commandeController::class,'overviewEarningsMarques']);
+Route::post('displayCommandesMarque', [commandeController::class,'displayCommandesMarque']);
+Route::post('displayCommandesMarqueLivreur', [commandeController::class,'displayCommandesMarqueLivreur']);
+Route::post('displayInfoCommandeMarque', [commandeController::class,'displayInfoCommandeMarque']);
+Route::post('displayInfoCommandeMarqueAdmin', [commandeController::class,'displayInfoCommandeMarqueAdmin']);
+Route::post('displayAvailableStocks', [commandeController::class,'displayAvailableStocks']);
+Route::post('validerCommande', [commandeController::class,'validerCommande']);
+Route::post('refuserCommande', [commandeController::class,'refuserCommande']);
+Route::post('infoCommande', [commandeController::class,'infoCommande']);
+Route::post('checkStatusCommandeMarque', [commandeController::class,'checkStatusCommandeMarque']);
 Route::post('createCommandes', [commandeController::class,'createCommandes']);
+Route::post('updateCommandes', [commandeController::class,'updateCommandes']);
 Route::post('attachProductCommandes', [commandeController::class,'attachProductCommandes']);
 Route::post('deleteCommandes', [commandeController::class,'deleteCommandes']);
+Route::post('Delivered', [commandeController::class,'Delivered']);
 
 //Pdv routes
 
 Route::get('displayPdv', [PdvController::class,'displayPdv']);
+Route::get('displayPdvPieChart', [PdvController::class,'displayPdvPieChart']);
+Route::post('displayProductPieChartMarques', [PdvController::class,'displayProductPieChartMarques']);
 Route::post('createPdv', [PdvController::class,'createPdv']);
 Route::post('updatePdv', [PdvController::class,'updatePdv']);
 Route::post('deletePdv', [PdvController::class,'deletePdv']);
+
+//Argent routes
+
+Route::get('displayArgent', [ArgentController::class,'displayArgent']);
+Route::post('displaySalaireCommercial', [ArgentController::class,'displaySalaireCommercial']);
+Route::post('casproPayed', [ArgentController::class,'casproPayed']);
+Route::post('commercialPayed', [ArgentController::class,'commercialPayed']);
+Route::post('casproNotPayed', [ArgentController::class,'casproNotPayed']);
+Route::post('commercialNotPayed', [ArgentController::class,'commercialNotPayed']);
+
+//Notification routes
+
+Route::post('getNotif', [NotificationController::class,'getNotif']);
+Route::post('markAsRead', [NotificationController::class,'markAsRead']);
+Route::post('markAllCommandeAsRead', [NotificationController::class,'markAllCommandeAsRead']);
+Route::post('createNotifCommercial', [NotificationController::class,'createNotifCommercial']);
+Route::get('getNotifAdmin', [NotificationController::class,'getNotifAdmin']);
+
 
 
 

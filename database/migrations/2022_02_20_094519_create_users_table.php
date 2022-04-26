@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('password'); //Verify Type
             $table->string('phone')->nullable(); //Verify Type
             $table->enum('type', ['Admin', 'Marque', 'Commercial']);
+            $table->integer('pourcentageCaspro')->nullable();
             $table->string('RC')->nullable();
             $table->string('NIF')->nullable();
             $table->string('NIS')->nullable();

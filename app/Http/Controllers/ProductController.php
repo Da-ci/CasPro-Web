@@ -32,7 +32,7 @@ class ProductController extends Controller
 
         $validated = $request->validated();
 
-        $results = db::select("SELECT products.id ,products.name, MAX(product_stock.Quantity) AS Quantity FROM users JOIN products ON users.id = products.user_id JOIN product_stock ON product_stock.product_id = products.id WHERE product_stock.Quantity >= products.quantity AND users.id = ? GROUP BY products.name;", [$request->id]);
+        $results = db::select("SELECT products.id ,products.name, products.quantity, MAX(product_stock.Quantity) AS Quantity FROM users JOIN products ON users.id = products.user_id JOIN product_stock ON product_stock.product_id = products.id WHERE product_stock.Quantity >= products.quantity AND users.id = ? GROUP BY products.name;", [$request->id]);
 
         return $results;
     }
@@ -56,7 +56,7 @@ class ProductController extends Controller
             'price' => $request->price,
             'quantity' => $request->quantity,
             'seuil' => $request->seuil,
-            'prixGros' => $request->priceGros,
+            'prixGros' => $request->prixGros,
             'user_id' => $request->user_id
         ]);
     }
@@ -73,7 +73,7 @@ class ProductController extends Controller
             'price' => $request->price,
             'quantity' => $request->quantity,
             'seuil' => $request->seuil,
-            'priceGros' => $request->priceGros,
+            'prixGros' => $request->prixGros,
         ]);
 
     }

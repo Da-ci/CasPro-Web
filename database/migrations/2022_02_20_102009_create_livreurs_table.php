@@ -16,7 +16,8 @@ class CreateLivreursTable extends Migration
         Schema::create('livreurs', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('phone');
+            $table->string('phone')->unique();
+            $table->string('password');
             $table->timestamps();
             $table->foreignId('user_id')->constrained()->onDelete("cascade");
         });

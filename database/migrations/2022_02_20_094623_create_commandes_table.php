@@ -16,7 +16,8 @@ class CreateCommandesTable extends Migration
         Schema::create('commandes', function (Blueprint $table) {
             $table->id();
             $table->string('numCommande');
-            $table->enum('status', ['Validée', 'Non Validée', 'En Attente']);
+            $table->enum('status', ['Validée', 'Non Validée', 'En Attente', 'Livrée']);
+            $table->decimal('prixTotal', $precision = 19, $scale = 2)->default(0);
             $table->timestamps();
             $table->foreignId('user_id')->constrained();
             $table->foreignId('pdv_id')->constrained();

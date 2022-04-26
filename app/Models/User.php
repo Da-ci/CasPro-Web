@@ -9,7 +9,7 @@ class User extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'email', 'password', 'type', 'phone', 'RC', 'NIF', 'NIS', 'AI'];
+    protected $fillable = ['name', 'email', 'password', 'type', 'pourcentageCaspro', 'phone', 'RC', 'NIF', 'NIS', 'AI'];
 
     public function Products()
     {

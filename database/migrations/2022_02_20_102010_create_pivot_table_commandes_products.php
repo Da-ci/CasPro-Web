@@ -17,9 +17,10 @@ class CreatePivotTableCommandesProducts extends Migration
             $table->id();
             $table->foreignId('commande_id')->constrained()->onDelete("cascade");;
             $table->foreignId('product_id')->constrained()->onDelete("cascade");
+            $table->foreignId('livreur_id')->nullable()->constrained()->onDelete("cascade");
             $table->integer('quantity');
-            $table->integer('price');
-            $table->boolean('status')->default(false);
+            $table->decimal('price', $precision = 19, $scale = 2)->default(0);
+            $table->boolean('status')->nullable();
         });
     }
 
